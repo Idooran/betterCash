@@ -2,18 +2,18 @@ import React from "react";
 import { AppBar, Tabs, Tab, Box, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "black"
+    backgroundColor: "black",
   },
   appBar: {
     backgroundColor: "black",
-    textColor: "white"
+    textColor: "white",
   },
   tabContent: {
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
 const TabsSection = ({ standAloneContent, comparedContent }) => {
@@ -43,20 +43,20 @@ const TabsSection = ({ standAloneContent, comparedContent }) => {
   );
 };
 
-const TabPanel = props => {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
     <Typography component="div" role="tabpanel" hidden={value !== index} id={`full-width-tabpanel-${index}`} aria-labelledby={`full-width-tab-${index}`} {...other}>
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p={1}>{children}</Box>}
     </Typography>
   );
 };
 
-const a11yProps = index => {
+const a11yProps = (index) => {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 };
 

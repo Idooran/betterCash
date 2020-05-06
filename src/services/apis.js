@@ -6,21 +6,21 @@ import { ONE_DAY, FIVE_DAYS, ONE_MONTH, SIX_MONTHS, YTD, ONE_YEAR, FIVE_YEAR, MA
 const host = "https://financialmodelingprep.com";
 
 // gets  sector, description
-export const profileApi = stockId => axios.get(host + `/api/v3/company/profile/${stockId}`);
+export const profileApi = (stockId) => axios.get(host + `/api/v3/company/profile/${stockId}`);
 
 // market cap & volume, P/E
-export const quotesApi = stockId => axios.get(host + `/api/v3/quote/${stockId}`);
+export const quotesApi = (stockId) => axios.get(host + `/api/v3/quote/${stockId}`);
 
 // free cash flow, revenue, revenueGrowth,Earning
-export const financeApi = stockId => axios.get(host + `/api/v3/financials/income-statement/${stockId}`);
+export const financeApi = (stockId) => axios.get(host + `/api/v3/financials/income-statement/${stockId}`);
 
 // earningGrowth
-export const financeGrowthApi = stockId => axios.get(host + `/api/v3/financial-statement-growth/${stockId}`);
+export const financeGrowthApi = (stockId) => axios.get(host + `/api/v3/financial-statement-growth/${stockId}`);
 
 // Div Yield
-export const companyMatrixApi = stockId => axios.get(host + `/api/v3/company-key-metrics/${stockId}`);
+export const companyMatrixApi = (stockId) => axios.get(host + `/api/v3/company-key-metrics/${stockId}`);
 
-export const cashFlowApi = stockId => axios.get(host + `/api/v3/financials/cash-flow-statement/${stockId}`);
+export const cashFlowApi = (stockId) => axios.get(host + `/api/v3/financials/cash-flow-statement/${stockId}`);
 
 // sector performance
 export const sectorApi = () => axios.get(host + "/api/v3/stock/sectors-performance");
@@ -62,18 +62,14 @@ const getToday = () => {
   return moment().format("YYYY-MM-DD");
 };
 
-const getMonth = interval => {
-  return moment()
-    .subtract(interval, "month")
-    .format("YYYY-MM-DD");
+const getMonth = (interval) => {
+  return moment().subtract(interval, "month").format("YYYY-MM-DD");
 };
 
 const getFromYear = () => {
-  return `${moment().year}-01-01`;
+  return `${moment().year()}-01-01`;
 };
 
-const getYear = interval => {
-  return moment()
-    .subtract(interval, "year")
-    .format("YYYY-MM-DD");
+const getYear = (interval) => {
+  return moment().subtract(interval, "year").format("YYYY-MM-DD");
 };

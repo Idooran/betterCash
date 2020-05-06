@@ -4,3 +4,4 @@ export const SET_STOCK = "SET_STOCK";
 export const FETCH_STOCK_INFO = "FETCH_STOCK_INFO";
 export const FETCH_STOCK_PARMS = "FETCH_STOCK_PARMS";
 export const FETCH_GRPAH_DATA = "FETCH_GRPAH_DATA";
+export const TICKER_NOT_FOUND = "TICKER_NOT_FOUND";

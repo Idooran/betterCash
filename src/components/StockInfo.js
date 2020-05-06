@@ -4,37 +4,36 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
 import Slider from "./ui/Slider";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: "black",
     marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3)
+    marginRight: theme.spacing(3),
   },
   headerContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "black"
+    backgroundColor: "black",
   },
   seprator: {
     border: "1px solid #fff",
     width: "50%",
-    margin: "auto 0 auto 0"
+    margin: "auto 0 auto 0",
   },
   titleContainer: {
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
+    whiteSpace: "nowrap",
   },
   companyInfoContainer: {
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   text: {
-    fontFamily: "Roboto",
-    color: "#ffffff"
+    color: "#ffffff",
   },
   header: {
-    fontFamily: "Roboto",
     fontWeight: 300,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -42,31 +41,31 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: "normal",
     textAlign: "center",
     color: "#ffffff",
-    whiteSpace: "nowrap"
+    whiteSpace: "pre-wrap",
   },
   companyName: {
     fontWeight: 500,
-    marginTop: "20%"
+    marginTop: "20%",
   },
   sectorGrowthContainer: {
     display: "flex",
     alignItems: "center",
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   slider: {
     width: "30%",
     padding: 0,
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
   },
   description: {
-    display: "block"
+    display: "block",
   },
   readMore: {
     textDecoration: "underline",
     marginLeft: "2px",
-    display: "block"
-  }
+    display: "block",
+  },
 }));
 
 const StockInfo = ({ stockInfo, stock }) => {
@@ -90,7 +89,7 @@ const StockInfo = ({ stockInfo, stock }) => {
     );
   };
 
-  const rednerDescription = description => {
+  const rednerDescription = (description) => {
     const maxDescritpionLength = 159;
 
     // set to full description if length is shorter
@@ -105,7 +104,7 @@ const StockInfo = ({ stockInfo, stock }) => {
             <Typography variant="subtitle2" className={`${classes.text} ${classes.description}`}>
               {description.slice(0, maxDescritpionLength) + "... "}
             </Typography>
-            <Typography onClick={e => setShowFullDescription(true)} variant="subtitle2" className={`${classes.text} ${classes.readMore}`}>
+            <Typography onClick={(e) => setShowFullDescription(true)} variant="subtitle2" className={`${classes.text} ${classes.readMore}`}>
               Read More >
             </Typography>
           </Grid>
@@ -145,10 +144,10 @@ const StockInfo = ({ stockInfo, stock }) => {
   );
 };
 
-const mapStateToPros = state => {
+const mapStateToPros = (state) => {
   return {
     stockInfo: state.stockData.stockInfo,
-    stock: state.stockData.stock
+    stock: state.stockData.stock,
   };
 };
 

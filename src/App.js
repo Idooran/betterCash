@@ -1,86 +1,66 @@
 import React from "react";
-import { connect } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Home from "./components/Home";
+import ContactUs from "./components/ContactUs";
+import InformationPage from "./components/InformationPage";
+
 import theme from "./theme";
-import { setStock } from "./actions";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
-import StockGraph from "./components/StockGraph";
-import StockInfo from "./components/StockInfo";
-import StockParams from "./components/StockParams";
-import { Grid, Typography } from "@material-ui/core";
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: "black"
-  },
-  linksContainer: {
     backgroundColor: "black",
+    height: "100vh",
     display: "flex",
-    justifyContent: "space-around",
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    "&:first-child": {
-      backgroundColor: "white"
-    }
+    flexDirection: "column",
   },
-  linkWrapper: {
-    display: "flex",
-    width: "100%",
-    backgroundColor: "black"
-  },
-  stockDataContainer: {
-    backgroundColor: "black",
-    display: "flex",
-    alignItems: "baseline"
-  },
-  discalimerContainer: {
-    backgroundColor: "black",
-    color: "white",
-    margin: theme.spacing(2)
-  },
-  link: {
-    color: "white",
-    width: "100%",
-    textAlign: "center",
-    borderRight: "1px solid #fff"
-  },
-  lastLink: {
-    border: "none"
-  }
 }));
 
-function App({ setStock }) {
+function App() {
   const classes = useStyles();
-
-  const stock = window.location.pathname.replace("/", "");
-  setStock(stock);
 
   return (
     <div className={classes.container}>
       <ThemeProvider theme={theme}>
-        <StockInfo />
-        <StockGraph />
-        <StockParams />
-        <div className={classes.discalimerContainer}>
-          <Typography variant="subtitle-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
-        </div>
-        <Grid className={classes.linksContainer}>
-          {["Help", "About", "TOS", "Privacy"].map((link, index) => {
-            var className = index == 3 ? `${classes.link} ${classes.lastLink}` : classes.link;
+        <Router>
+          <Switch>
+            <Route exact path="/contact-us">
+              <ContactUs />
+            </Route>
+            <Route exact path="/tos">
+              <InformationPage
+                title="Term Of Service"
+                text="Lorem ipsum dolor sit amet, utroque referrentur pro ad. In verear honestatis usu, wisi quando perpetua mea ex. Ne duis ubique vel, eos doming laboramus an, vim eu etiam dicant singulis. Et eam amet mentitum appetere. Usu cu erroribus philosophia, et qui harum verear dissentias, et eros etiam scaevola his.
 
-            return (
-              // <Typography variant="button" gutterBottom className={className}>
-              <Typography variant="button" gutterBottom className={className}>
-                {link}
-              </Typography>
-            );
-          })}
-        </Grid>
+Porro everti quo et. Ea sit vero reque nobis, eum ad epicurei scriptorem, cibo ferri quaestio ne eum. Eos torquatos tinciduant ad. Illum laudem habemus nec ei, ad has scripta propriae assueverit. Nobis homero delicatissimi has te, ancillae adolescens ut ius.
+
+Ius ad munere nullam voluptatibus, mei latine impetus sapientem te. Placerat fabellas efficiantur no sit. No sea atqui veritus deseruisse. Impetus oporteat assueverit mei ei, suscipit indoctum persecuti in est. Doming verear adolescens vel no. Sea verterem antiopam eu, et vim semper atomorum.
+
+Sit alii graeco at, in legere accommodare vel, omnis viris putent id vis. Vim quodsi accusam argumentum te, ad probatus torquatos deterruisset duo, nam ei omnis recusabo maluisset. Duo assum mediocrem adolescens ut, at mei quod nibh liber, eos quis omittam eu. His eu utroque expetenda, cum erant expetendis et. Ne posse tibique mea, diam fabellas quaestio cum ne, mel ei apeirian iracundia forensibus.
+
+Vix at malis eripuit feugiat, wisi ocurreret ne vix. An mediocrem intellegebat quo. Eos et noster salutatus. Eam ne novum graecis partiendo, est vidisse detraxit posidonium cu. At exerci dolorem definiebas quo. Eum cetero saperet reprehendunt te, eam ex dolorem atomorum scripserit, cu pro tamquam mentitum constituto."
+              ></InformationPage>
+            </Route>
+            <Route exact path="/help">
+              <InformationPage title="help" text="adfglkjhadlkjhgkjadjhkgrdjlk" />
+            </Route>
+            <Route exact path="/privacy">
+              <InformationPage title="privacy" text="adfglkjhadlk jhgkjadjhkgrdjlk" />
+            </Route>
+            <Route exect path="/not-found">
+              <NotFound />
+            </Route>
+            <Route path="/" component={Home}></Route>
+          </Switch>
+          {<Footer />}
+        </Router>
       </ThemeProvider>
     </div>
   );
 }
 
-export default connect(null, { setStock })(App);
+export default App;
